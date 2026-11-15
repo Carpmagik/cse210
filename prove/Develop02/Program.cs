@@ -45,9 +45,9 @@ class Program
                     
                     //write
                     Entry newEntry = new Entry(); 
-                    newEntry.Date = DateTime.Now.ToShortDateString();
-                    newEntry.Prompt = prompt;
-                    newEntry.Response = response;
+                    newEntry._date = DateTime.Now.ToShortDateString();
+                    newEntry._prompt = prompt;
+                    newEntry._response = response;
 
                     journal.AddEntry(newEntry);
                     break;

@@ -2,14 +2,14 @@ using System;
 
 public class Entry
 {
-    public string Date; 
-    public string Prompt;
-    public string Response;
+    public string _date; 
+    public string _prompt;
+    public string _response;
 
     public void Display()
     {
-        Console.WriteLine($"Date: {Date} - Prompt: {Prompt}");
-        Console.WriteLine($"Response: {Response}");
+        Console.WriteLine($"Date: {_date} - Prompt: {_prompt}");
+        Console.WriteLine($"Response: {_response}");
         Console.WriteLine();
     }
 }

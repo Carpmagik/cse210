@@ -25,7 +25,7 @@ public class Journal
         {
             foreach (Entry entry in _entries)
             {
-                writer.WriteLine($"{entry.Date} - {entry.Prompt}: {entry.Response}");
+                writer.WriteLine($"{entry._date} - {entry._prompt}: {entry._response}");
             }
         }
         Console.WriteLine("Journal saved successfully!\n");
@@ -46,9 +46,9 @@ public class Journal
                 if (parts.Length == 3)
                 {
                     Entry entry = new Entry();
-                    entry.Date = parts[0];
-                    entry.Prompt = parts[1];
-                    entry.Response = parts[2];
+                    entry._date = parts[0];
+                    entry._prompt = parts[1];
+                    entry._response = parts[2];
 
                     _entries.Add(entry);
                 }
