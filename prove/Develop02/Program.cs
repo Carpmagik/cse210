@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 
+
+/// Extra effort was the delete file option
+
 class Program
 {
     static void Main(string[] args)
@@ -18,66 +21,67 @@ class Program
         };
         
         Random random = new Random();
-        bool running = true;
-
-        while (running)
+        string randomPrompt = prompts[random.Next(prompts.Length)];
+        while (true)
         {
             Console.WriteLine("Please select one of the following choices:");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
             Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save"); 
-            Console.WriteLine("5. Quit");                         
+            Console.WriteLine("4. Save");
+            Console.WriteLine("5. Delete");
+            Console.WriteLine("6. Quit");
             Console.Write("What would you like to do? ");
 
-            string choice = Console.ReadLine();
+            string choiceInput = Console.ReadLine();
+            int options = int.Parse(choiceInput);
             Console.WriteLine();
 
-            switch (choice)
+
+            /// A groupmate used case/switch statements , and I found out that 
+            /// the maihn difference between them is that switch 
+            /// statements are more efficient when it checks the same variable, while
+            /// if statements better check unrelated variables.
+
+            if (options == 1) 
             {
-                case "1":
-                    
-                    string prompt = prompts[random.Next(prompts.Length)];
-                    Console.WriteLine(prompt);
-                    Console.Write("> ");
-                    string response = Console.ReadLine();
+                string prompt = prompts[random.Next(prompts.Length)];
+                Console.WriteLine(prompt);
+                string response = Console.ReadLine();
 
-                    
-                    //write
-                    Entry newEntry = new Entry(); 
-                    newEntry._date = DateTime.Now.ToShortDateString();
-                    newEntry._prompt = prompt;
-                    newEntry._response = response;
+                Entry newEntry = new Entry();
+                newEntry._date = DateTime.Now.ToShortDateString();
+                newEntry._prompt = prompt;
+                newEntry._response = response;
 
-                    journal.AddEntry(newEntry);
-                    break;
-
-                
-                case "2": 
-                    //display
-                    journal.DisplayAll();
-                    break;
-
-                case "3":
-                    //load
-                    Console.Write("Enter filename: ");
-                    string loadFile = Console.ReadLine();
-                    journal.LoadFromFile(loadFile);
-                    break;
-
-
-                case "4":
-                    //save
-                    Console.Write("What is the filename you want to save? ");
-                    string saveFilename = Console.ReadLine();
-                    journal.SaveToFile(saveFilename);
-                    break;
-
-                case "5":
-                    //quit
-                    running = false;
-                    break;
+                journal.AddEntry(newEntry);
+            }
+            else if (options == 2)
+            {
+                journal.DisplayAll();
+            }
+            else if (options == 3)
+            {
+                Console.Write("Enter filename: ");
+                string loadFile = Console.ReadLine();
+                journal.LoadFromFile(loadFile);
+            }
+            else if (options == 4)
+            {
+                Console.Write("What is the filename you want to save? ");
+                string saveFilename = Console.ReadLine();
+                journal.SaveToFile(saveFilename);
+            }
+            else if (options == 5)
+            {
+                Console.Write("Enter filename to delete: ");
+                string deleteFile = Console.ReadLine();
+                journal.DeleteFile(deleteFile);
+            }
+            else if (options == 6)
+            {
+                break;
             }
         }
     }
-}
+    }

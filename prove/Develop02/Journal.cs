@@ -19,18 +19,6 @@ public class Journal
         }
     }
 
-    public void SaveToFile(string filename)
-    {
-        using (StreamWriter writer = new StreamWriter(filename))
-        {
-            foreach (Entry entry in _entries)
-            {
-                writer.WriteLine($"{entry._date} - {entry._prompt}: {entry._response}");
-            }
-        }
-        Console.WriteLine("Journal saved successfully!\n");
-    }
-
     public void LoadFromFile(string filename)
     {
         _entries.Clear();
@@ -42,6 +30,9 @@ public class Journal
             foreach (string line in lines)
             {
                 string[] parts = line.Split(new string[] { " - ", ": " }, StringSplitOptions.None);
+
+            /// I learned that stringSplitOptions.None is used to keep everything, even if
+            /// there are empty. 
 
                 if (parts.Length == 3)
                 {
@@ -57,4 +48,28 @@ public class Journal
         }
 
         }
+        
+    /// saves to file
+    public void SaveToFile(string filename)
+    {
+        using (StreamWriter writer = new StreamWriter(filename))
+        {
+            foreach (Entry entry in _entries)
+            {
+                writer.WriteLine($"{entry._date} - {entry._prompt}: {entry._response}");
+            }
+        }
+        Console.WriteLine("Journal saved successfully!\n");
     }
+
+
+    /// deletes the file
+    public void DeleteFile(string filename)
+    {
+        if (File.Exists(filename))
+        {
+            File.Delete(filename);
+            Console.WriteLine($"File '{filename}' deleted successfully.");
+        }
+    }
+}
