@@ -1,41 +1,34 @@
 using System;
 using System.Collections.Generic;
 
-public class Entry
-{
-    public string Response { get; set; } = string.Empty;
-}
-
-public class Word
-{
-    public List<Entry> Entries { get; set; } = new List<Entry>();
-
-    public void PrintHiddenWords()
+    public class Word
     {
-        foreach (Entry entry in Entries)
+        private string _word;
+        private bool _isHidden;
+
+        public Word(string word)
         {
-            string hiddenResponse = MaskWords(entry?.Response);
-            Console.WriteLine($"Response: {hiddenResponse}");
+            _word = word;
+            _isHidden = false;
+        }
+        
+        public void Hide()
+        {
+            _isHidden = true;
+        }
+        public bool IsHidden()
+        {
+            return _isHidden;
+        }
+        public string DisplayText()
+    {
+        if (_isHidden)
+        {
+            return new string('_', _word.Length);
+        }
+        else
+        {
+            return _word;
         }
     }
-
-    public static string MaskWords(string? text)
-    {
-        if (string.IsNullOrEmpty(text))
-        {
-            return string.Empty;
-        }
-
-        string[] words = text.Split(' ');
-
-        for (int i = 0; i < words.Length; i++)
-        {
-            if (words[i].Length > 0)
-            {
-                words[i] = new string('_', words[i].Length);
-            }
-        }
-
-        return string.Join(" ", words);
     }
-}
