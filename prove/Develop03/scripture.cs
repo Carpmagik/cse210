@@ -17,10 +17,14 @@ public class Scripture
         }
     }
 
+
+    // this 
     public void HideRandomWords(int numberToHide)
     {
         List<int> availableWords = new List<int>();
 
+
+        // this hides random wordds, but checks to see if it already isn't hidden
         for (int i = 0; i < _words.Count; i++)
         {
             if (!_words[i].IsHidden())
@@ -46,6 +50,9 @@ public class Scripture
         return $"{_reference.GetReference()} - {text}";
     }
 
+
+    // program.cs calls this method to check if all words are hidden and then 
+    // displays a message.
     public bool IsCompletelyHidden()
     {
         foreach (Word word in _words)

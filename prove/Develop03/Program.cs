@@ -1,15 +1,16 @@
 using System;
 
+/// extra effort was used through the collection initializers 
+/// to allow more verses to be used.
 class Program
 {
     static void Main(string[] args)
     {
         Scripture[] scriptures =
         {
-
-            /// I rerused the starting code (like 'while(true)') from the journal assignment.
-            /// I learned was that collection initializers allow you 
-            /// to create a list in a condensed way.
+            // I tried to reuse the starting code (like 'while(true)') from the journal assignment.
+            // I learned about collection initializers because I wanted to add a random verses
+            // each time the programe starts
             new Scripture(
                 new Reference("2 Nephi", 2, 25),
                 "And it shall come to pass that whosoever will believe in the Lord shall be saved."
@@ -35,19 +36,19 @@ class Program
 
             if (scripture.IsCompletelyHidden())
             {
-                Console.WriteLine("You got it all right!");
+                Console.WriteLine("Program complete, all words hidden.");
                 break;
             }
 
-            Console.WriteLine("Press Enter to continue or type 'quit' to finish.");
+            Console.WriteLine("Press Enter to hide words or type 'quit' to end the program.");
             string input = Console.ReadLine();
 
-            if (input.ToLower() == "quit")
+            if (input == "quit")
             {
                 break;
             }
 
-            ///This hides three random words in the scripture.
+            // This hides three random words in the scripture.
             scripture.HideRandomWords(3);
         }
     }
